@@ -150,19 +150,5 @@ g++ -std=c++17 -Wall -Wextra ../src/ExpressionEvaluator.cpp test_evaluator.cpp -
 g++ -std=c++17 -Wall -Wextra ../src/ExpressionEvaluator.cpp ../src/NumericalMethods.cpp test_numerical.cpp -o test_numerical -I.. && ./test_numerical
 ```
 
-Both print `[ OK ]`/`[FAIL]` per case and exit non-zero if anything fails,
-so they can be wired into a CI job (e.g. GitHub Actions) as-is.
-`test_numerical.cpp` checks the derivative/integral/root-finding results
-against known closed-form answers (`d/dx[sin x] = cos x`,
-`∫₀^π sin x dx = 2`, roots of `sin(x)` at `0, π, 2π`, roots of `x²-4` at
-`±2`), plus that integrating across a singularity (`1/x` over `[-1, 1]`)
-correctly raises an error instead of silently returning a bogus number.
 
-## Possible next steps
-
-- Tangent-line visualization at a chosen point (reuses the derivative code).
-- Local min/max detection via sign changes in the derivative.
-- Taylor-series approximation overlay around a chosen center point.
-- Export the current view as a PNG.
-- GitHub Actions CI badge running the `tests/` suite on push.
 
